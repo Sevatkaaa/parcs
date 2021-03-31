@@ -6,24 +6,29 @@ import parcs.*;
 
 public class Bluck {
 
+    private static final int NODES = 2;
+
     public static void main(String[] args) throws Exception {
         task curtask = new task();
         curtask.addJarFile("MyClass.jar");
         int n = readData(curtask.findFile("input"));
 
         List<channel> channels = new ArrayList<>();
-        for (int i = 0; i < n; i++) {
+        for (int i = 0; i < NODES; i++) {
             AMInfo info = new AMInfo(curtask, null);
             point p = info.createPoint();
             channel c = p.createChannel();
             p.execute("MyClass");
             channels.add(c);
-            c.write(i);
+            c.write(new Node(1, n / 2));
         }
 
         for (int i = 0; i < channels.size(); i++) {
             channel channel = channels.get(i);
-            System.out.println(channel.readInt());
+            int[] ans = (int [])channel.readObject();
+            for (int j = 0; j < ans.length; j++) {
+                System.out.println(ans[i]);
+            }
         }
         curtask.end();
     }

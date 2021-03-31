@@ -1,13 +1,24 @@
 import parcs.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MyClass implements AM {
     public void run(AMInfo info) {
-        int n = info.parent.readInt();
+        Node node = (Node)info.parent.readObject();
         System.out.println("Build started.");
         System.out.println("Build finished.");
-        if (isPal(n)) {
-            info.parent.write(n);
+        List<Integer> ans = new ArrayList<>();
+        for (int i = node.f; i < node.l; i++) {
+            if (isPal(i)) {
+                ans.add(i);
+            }
         }
+        int[] a = new int[ans.size()];
+        for (int i = 0; i < ans.size(); i++) {
+            a[i] = ans.get(i);
+        }
+        info.parent.write(a);
     }
 
     private boolean isPal(int n) {
