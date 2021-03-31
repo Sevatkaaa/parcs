@@ -19,6 +19,7 @@ public class MyClass implements AM {
             a[i] = ans.get(i);
         }
         info.parent.write(a);
+        info.parent.close();
     }
 
     private boolean isPal(int n) {

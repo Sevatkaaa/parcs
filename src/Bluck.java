@@ -25,7 +25,7 @@ public class Bluck {
 
         for (int i = 0; i < channels.size(); i++) {
             channel channel = channels.get(i);
-            int[] ans = (int [])channel.readObject();
+            int[] ans = (int[])channel.readObject();
             for (int j = 0; j < ans.length; j++) {
                 System.out.println(ans[i]);
             }
