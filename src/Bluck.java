@@ -20,7 +20,7 @@ public class Bluck {
             channel c = p.createChannel();
             p.execute("MyClass");
             channels.add(c);
-            c.write(new Node(1, n / 2));
+            c.write(new int[]{1, n / 2});
         }
 
         for (int i = 0; i < channels.size(); i++) {
