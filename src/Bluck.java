@@ -29,7 +29,7 @@ public class Bluck {
             channel channel = channels.get(i);
             int[] ans = (int[])channel.readObject();
             for (int j = 0; j < ans.length; j++) {
-                System.out.println(ans[i]);
+                System.out.println(ans[j]);
             }
         }
         curtask.end();
