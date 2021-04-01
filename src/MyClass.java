@@ -19,7 +19,7 @@ public class MyClass implements AM {
             a[i] = ans.get(i);
         }
         System.out.println("ans is " + ans);
-        System.out.println("Build finished in " + (System.nanoTime() - s) / 1000 + " ms");
+        System.out.println("Build finished in " + (System.nanoTime() - s) / 1000000 + " ms");
         info.parent.write(a);
     }
 

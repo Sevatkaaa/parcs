@@ -38,7 +38,7 @@ public class Bluck {
             }
         }
         long stopTime = System.nanoTime();
-        System.out.println("End of task in " + (stopTime - startTime) / 1000 + " ms");
+        System.out.println("End of task in " + (stopTime - startTime) / 1000000 + " ms");
         curtask.end();
     }
 
