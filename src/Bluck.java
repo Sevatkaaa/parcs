@@ -6,22 +6,21 @@ import parcs.*;
 
 public class Bluck {
 
-    private static final int NODES = 2;
-
     public static void main(String[] args) throws Exception {
         task curtask = new task();
         curtask.addJarFile("MyClass.jar");
-        int n = readData(curtask.findFile("input"));
+        int[] data = readData(curtask.findFile("input"));
+        int n = data[0];
 
-        long startTime = System.nanoTime();
         AMInfo info = new AMInfo(curtask, null);
         List<channel> channels = new ArrayList<>();
-        for (int i = 0; i < NODES; i++) {
+        for (int i = 0; i < data[1]; i++) {
             point p = info.createPoint();
             channel c = p.createChannel();
             channels.add(c);
             p.execute("MyClass");
         }
+        long startTime = System.nanoTime();
 
         for (int i = 0; i < channels.size(); i++) {
             int count = n / channels.size();
@@ -40,12 +39,12 @@ public class Bluck {
             }
         }
         long stopTime = System.nanoTime();
-        System.out.println("End of task in " + (stopTime - startTime) / 1000000 + " ms");
+        System.out.println("End of task");
         curtask.end();
     }
 
-    public static int readData(String filename) throws Exception {
+    public static int[] readData(String filename) throws Exception {
         Scanner sc = new Scanner(new File(filename));
-        return sc.nextInt();
+        return new int[]{sc.nextInt(), sc.nextInt()};
     }
 }
