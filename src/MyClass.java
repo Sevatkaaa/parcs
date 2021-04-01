@@ -7,7 +7,6 @@ public class MyClass implements AM {
     public void run(AMInfo info) {
         int[] node = (int[])info.parent.readObject();
         System.out.println("Build started.");
-        System.out.println("Build finished.");
         List<Integer> ans = new ArrayList<>();
         for (int i = node[0]; i < node[1]; i++) {
             if (isPal(i)) {
@@ -18,6 +17,8 @@ public class MyClass implements AM {
         for (int i = 0; i < ans.size(); i++) {
             a[i] = ans.get(i);
         }
+        System.out.println("ans is " + ans);
+        System.out.println("Build finished.");
         info.parent.write(a);
     }
 
