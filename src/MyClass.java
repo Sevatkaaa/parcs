@@ -7,6 +7,7 @@ public class MyClass implements AM {
     public void run(AMInfo info) {
         int[] node = (int[])info.parent.readObject();
         System.out.println("Build started.");
+        long s = System.nanoTime();
         List<Integer> ans = new ArrayList<>();
         for (int i = node[0]; i < node[1]; i++) {
             if (isPal(i)) {
@@ -18,7 +19,7 @@ public class MyClass implements AM {
             a[i] = ans.get(i);
         }
         System.out.println("ans is " + ans);
-        System.out.println("Build finished.");
+        System.out.println("Build finished in " + (System.nanoTime() - s) / 1000 + " ms");
         info.parent.write(a);
     }
 
