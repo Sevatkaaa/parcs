@@ -13,15 +13,17 @@ public class Bluck {
         curtask.addJarFile("MyClass.jar");
         int n = readData(curtask.findFile("input"));
 
+        AMInfo info = new AMInfo(curtask, null);
         List<channel> channels = new ArrayList<>();
         for (int i = 0; i < NODES; i++) {
-            AMInfo info = new AMInfo(curtask, null);
             point p = info.createPoint();
             channel c = p.createChannel();
-            p.execute("MyClass");
             channels.add(c);
-            c.write(new int[]{1, n / 2});
+            p.execute("MyClass");
         }
+
+        channels.get(0).write(new int[]{1, n / 2});
+        channels.get(1).write(new int[]{n / 2 + 1, n});
 
         for (int i = 0; i < channels.size(); i++) {
             channel channel = channels.get(i);
