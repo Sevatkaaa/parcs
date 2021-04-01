@@ -30,7 +30,7 @@ public class Bluck {
             channels.get(i).write(new int[]{first, last});
         }
 
-        System.out.println(((System.nanoTime() - startTime) / 100000) + " ms took");
+        System.out.println(((System.nanoTime() - startTime) / 1000000) + " ms took");
 
         for (int i = 0; i < channels.size(); i++) {
             channel channel = channels.get(i);
