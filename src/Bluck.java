@@ -26,8 +26,8 @@ public class Bluck {
 
         for (int i = 0; i < n; i++) {
             int count = data.size() / n;
-            int first = count * i;
-            int last = i == n - 1 ? data.size() : count * (i + 1);
+            int first = count * i + 1;
+            int last = i == n - 1 ? data.size() : count * (i + 1) + 1;
             String[] d = new String[last - first];
             for (int j = first; j < last; j++) {
                 d[j - first] = data.get(j);
