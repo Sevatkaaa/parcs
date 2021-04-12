@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 import java.io.File;
@@ -27,16 +28,18 @@ public class Bluck {
             int count = data.size() / n;
             int first = count * i;
             int last = i == n - 1 ? data.size() : count * (i + 1);
+            String[] d = new String[last - first];
             for (int j = first; j < last; j++) {
-                channels.get(i).write(data.get(j));
+                d[j - first] = data.get(j);
             }
+            channels.get(i).write(d);
         }
 
         System.out.println(((System.nanoTime() - startTime) / 1000000) + " ms took");
 
         for (int i = 0; i < n; i++) {
-            Node ans = (Node) channels.get(i).readObject();
-            System.out.println(ans.data);
+            String[] ans = (String[]) channels.get(i).readObject();
+            System.out.println(Arrays.toString(ans));
         }
         long stopTime = System.nanoTime();
         System.out.println("End of task");

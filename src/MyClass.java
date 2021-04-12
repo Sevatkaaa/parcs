@@ -1,24 +1,22 @@
 import parcs.*;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Arrays;
 
 public class MyClass implements AM {
     public void run(AMInfo info) {
-        Node node = (Node)info.parent.readObject();
+        String[] node = (String[])info.parent.readObject();
         System.out.println("Build started.");
         long s = System.nanoTime();
-        List<String> a = decode(node.data);
-        node.data = a;
-        System.out.println("ans is " + a);
+        String[] a = decode(node);
+        System.out.println("ans is " + Arrays.toString(a));
         System.out.println("Build finished in " + (System.nanoTime() - s) / 1000000 + " ms");
-        info.parent.write(node);
+        info.parent.write(a);
     }
 
-    private List<String> decode(List<String> node) {
-        List<String> ans = new ArrayList<>();
-        for (int i = 0; i < node.size(); i++) {
-            ans.add(decode(node.get(i)));
+    private String[] decode(String[] node) {
+        String[] ans = new String[node.length];
+        for (int i = 0; i < node.length; i++) {
+            ans[i] = decode(node[i]);
         }
         return ans;
     }
