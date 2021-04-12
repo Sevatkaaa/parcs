@@ -11,7 +11,7 @@ public class Bluck {
         task curtask = new task();
         curtask.addJarFile("MyClass.jar");
         List<String> data = readData(curtask.findFile("input"));
-        int n = data.size();
+        int n = Integer.parseInt(data.get(0));
 
         AMInfo info = new AMInfo(curtask, null);
         List<channel> channels = new ArrayList<>();
@@ -24,14 +24,19 @@ public class Bluck {
         long startTime = System.nanoTime();
 
         for (int i = 0; i < n; i++) {
-            channels.get(i).write(data.get(i));
+            int count = data.size() / n;
+            int first = count * i;
+            int last = i == n - 1 ? data.size() : count * (i + 1);
+            for (int j = first; j < last; j++) {
+                channels.get(i).write(data.get(j));
+            }
         }
 
         System.out.println(((System.nanoTime() - startTime) / 1000000) + " ms took");
 
         for (int i = 0; i < n; i++) {
-            String ans = (String) channels.get(i).readObject();
-            System.out.println(ans);
+            Node ans = (Node) channels.get(i).readObject();
+            System.out.println(ans.data);
         }
         long stopTime = System.nanoTime();
         System.out.println("End of task");
