@@ -1,30 +1,24 @@
 import parcs.*;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class MyClass implements AM {
     public void run(AMInfo info) {
-        int[] node = (int[])info.parent.readObject();
+        String node = (String)info.parent.readObject();
         System.out.println("Build started.");
         long s = System.nanoTime();
-        List<Integer> ans = new ArrayList<>();
-        for (int i = node[0]; i < node[1]; i++) {
-            if (isPal(i)) {
-                ans.add(i);
-            }
-        }
-        int[] a = new int[ans.size()];
-        for (int i = 0; i < ans.size(); i++) {
-            a[i] = ans.get(i);
-        }
-        System.out.println("ans is " + ans);
+        String a = decode(node);
+        System.out.println("ans is " + a);
         System.out.println("Build finished in " + (System.nanoTime() - s) / 1000000 + " ms");
         info.parent.write(a);
     }
 
-    private boolean isPal(int n) {
-        String s = String.valueOf(n);
-        return s.equals(new StringBuilder(s).reverse().toString());
+    private String decode(String node) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < node.length(); i++) {
+            char c = node.charAt(i);
+            char ans = (char)(((c - 'A') * 9 + 7) % 26);
+            sb.append(ans);
+        }
+        return sb.toString();
     }
+
 }

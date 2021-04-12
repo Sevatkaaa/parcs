@@ -6,15 +6,16 @@ import parcs.*;
 
 public class Bluck {
 
+
     public static void main(String[] args) throws Exception {
         task curtask = new task();
         curtask.addJarFile("MyClass.jar");
-        int[] data = readData(curtask.findFile("input"));
-        int n = data[0];
+        List<String> data = readData(curtask.findFile("input"));
+        int n = data.size();
 
         AMInfo info = new AMInfo(curtask, null);
         List<channel> channels = new ArrayList<>();
-        for (int i = 0; i < data[1]; i++) {
+        for (int i = 0; i < n; i++) {
             point p = info.createPoint();
             channel c = p.createChannel();
             channels.add(c);
@@ -22,29 +23,27 @@ public class Bluck {
         }
         long startTime = System.nanoTime();
 
-        for (int i = 0; i < channels.size(); i++) {
-            int count = n / channels.size();
-            int first = 1 + count * i;
-            int last = i == channels.size() - 1 ? n : count * (i + 1);
-            channels.get(i).write(new int[]{first, last});
+        for (int i = 0; i < n; i++) {
+            channels.get(i).write(data.get(i));
         }
 
         System.out.println(((System.nanoTime() - startTime) / 1000000) + " ms took");
 
-        for (int i = 0; i < channels.size(); i++) {
-            channel channel = channels.get(i);
-            int[] ans = (int[])channel.readObject();
-            for (int j = 0; j < ans.length; j++) {
-                System.out.println(ans[j]);
-            }
+        for (int i = 0; i < n; i++) {
+            String ans = (String) channels.get(i).readObject();
+            System.out.println(ans);
         }
         long stopTime = System.nanoTime();
         System.out.println("End of task");
         curtask.end();
     }
 
-    public static int[] readData(String filename) throws Exception {
+    public static List<String> readData(String filename) throws Exception {
         Scanner sc = new Scanner(new File(filename));
-        return new int[]{sc.nextInt(), sc.nextInt()};
+        List<String> data = new ArrayList<>();
+        while (sc.hasNext()) {
+            data.add(sc.next());
+        }
+        return data;
     }
 }
