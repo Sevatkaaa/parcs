@@ -1,6 +1,6 @@
 public class Main {
     public static void main(String[] args) {
-        String s = "abcabcabc";
+        String s = "ahsn";
         System.out.println(decode(s));
     }
 
@@ -8,7 +8,7 @@ public class Main {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < node.length(); i++) {
             char c = node.charAt(i);
-            char ans = (char) (((c - 'A') * 9 + 7) % 26 + 'A');
+            char ans = (char) (((c - 'a') * 9 + 7) % 26 + 'a');
             sb.append(ans);
         }
         return sb.toString();

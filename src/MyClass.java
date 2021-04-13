@@ -26,7 +26,7 @@ public class MyClass implements AM {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < node.length(); i++) {
             char c = node.charAt(i);
-            char ans = (char) (((c - 'A') * 9 + 7) % 26 + 'A');
+            char ans = (char) (((c - 'a') * 9 + 7) % 26 + 'a');
             sb.append(ans);
         }
         return sb.toString();
