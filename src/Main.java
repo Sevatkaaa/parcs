@@ -1,6 +1,6 @@
 public class Main {
     public static void main(String[] args) {
-        String s = "ahsn";
+        String s = "abcd";
         System.out.println(decode(s));
     }
 

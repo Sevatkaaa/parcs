@@ -25,9 +25,9 @@ public class Bluck {
         long startTime = System.nanoTime();
 
         for (int i = 0; i < n; i++) {
-            int count = data.size() / n;
-            int first = count * i + 1;
-            int last = i == n - 1 ? data.size() : count * (i + 1) + 1;
+            int count = data.size() / n; // 4
+            int first = count * i + 1; // 5
+            int last = i == n - 1 ? data.size() : count * (i + 1) + 1; // 9
             String[] d = new String[last - first];
             for (int j = first; j < last; j++) {
                 d[j - first] = data.get(j);
@@ -38,11 +38,14 @@ public class Bluck {
 
         System.out.println(((System.nanoTime() - startTime) / 1000000) + " ms took");
 
+        List<String> answer = new ArrayList<>();
+
         for (int i = 0; i < n; i++) {
             String[] ans = (String[]) channels.get(i).readObject();
-            System.out.println(Arrays.toString(ans));
+            System.out.println("Ans from " + i + " channel is " + Arrays.toString(ans));
+            answer.addAll(Arrays.asList(ans));
         }
-        long stopTime = System.nanoTime();
+        answer.forEach(System.out::println);
         System.out.println("End of task");
         curtask.end();
     }
