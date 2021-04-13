@@ -5,6 +5,7 @@ import java.util.Arrays;
 public class MyClass implements AM {
     public void run(AMInfo info) {
         String[] node = (String[])info.parent.readObject();
+        System.out.println("data is " + Arrays.toString(node));
         System.out.println("Build started.");
         long s = System.nanoTime();
         String[] a = decode(node);
