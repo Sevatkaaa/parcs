@@ -32,6 +32,7 @@ public class Bluck {
             for (int j = first; j < last; j++) {
                 d[j - first] = data.get(j);
             }
+            System.out.println("data sent is " + Arrays.toString(d));
             channels.get(i).write(d);
         }
 
